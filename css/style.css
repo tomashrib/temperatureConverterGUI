@@ -1,0 +1,17 @@
+.root{
+    -fx-font-size: 15px;
+}
+
+.gridPane{
+    /* -fx-background-color: rgba(129, 211, 255, 0.5); */
+}
+
+.lbTemperatureConvert{
+    -fx-text-align: center;
+    -fx-background-color: rgb(45, 45, 45);
+    -fx-text-fill: rgb(255,255,255);
+    -fx-padding: 10px;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20 0 20 0;
+}

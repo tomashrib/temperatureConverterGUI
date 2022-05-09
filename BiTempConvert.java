@@ -3,14 +3,16 @@ import java.text.DecimalFormat;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -44,6 +46,7 @@ public class BiTempConvert extends Application{
         rbCtoF.setText("°C -> °F");
 
         btConvertTemperature = new Button("Konvertuj");
+        btConvertTemperature.getStyleClass().add("btConvertTemperature");
         btConvertTemperature.setOnAction(new ClickConvert());
 
         GridPane gridPane = new GridPane();
@@ -101,24 +104,31 @@ public class BiTempConvert extends Application{
             DecimalFormat dcmf = new DecimalFormat();
             dcmf.setMaximumFractionDigits(2);
 
-            float degree = Float.parseFloat(tfResult.getText());
 
-            if(rbCtoF.isSelected()){
-                degree = convertCalculate.convertCtoF(degree);
-                lbOutputResult.setText(String.valueOf(dcmf.format(degree)));
+            try{
+                float degree = Float.parseFloat(tfResult.getText());
+    
+                if(rbCtoF.isSelected()){
+                    degree = convertCalculate.convertCtoF(degree);
+                    lbOutputResult.setText(String.valueOf(dcmf.format(degree)));
+                }
+                else if(rbFtoC.isSelected()){
+                    degree = convertCalculate.convertFtoC(degree);
+                    lbOutputResult.setText(String.valueOf(dcmf.format(degree)));
+                }
             }
-            else if(rbFtoC.isSelected()){
-                degree = convertCalculate.convertFtoC(degree);
-                lbOutputResult.setText(String.valueOf(dcmf.format(degree)));
+            catch(Exception exception){
+                Alert alert = new Alert(AlertType.WARNING);
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                DialogPane dialogPane = alert.getDialogPane();
+                // dialogPane.getStylesheets().add("css/style.css");
+                // dialogPane.getStyleClass().add("warning");
+                alert.setHeaderText("Zadajte číslo!");
+                //javac -encoding utf8 ....java
+                alert.setTitle("Chyba");
+                alert.setContentText("Zadaný vstup musí byť číslo.");
+                alert.show();
             }
-
-            // else{
-            //     lbTemperatureConvert.setText("Select conversion type from below.");
-            // }
-
-            // if((rbCtoF.isSelected() == false) && (rbFtoC.isSelected() == false)){
-            //     lbTemperatureConvert.setText("Select conversion type from below.");
-            // }
         }
     }
 

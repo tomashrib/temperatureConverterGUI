@@ -15,6 +15,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 public class BiTempConvert extends Application{
     private Label lbTemperatureConvert, lbFahrenheit, lbCelsius, lbOutputResult;
@@ -31,12 +32,13 @@ public class BiTempConvert extends Application{
         // tfResultF.getStyleClass().add("tfResultF");
         tfResult.setMaxWidth(Double.MAX_VALUE);
 
-        lbFahrenheit = new Label("°F");
+        lbFahrenheit = new Label("°C");
         // lbFahrenheit.getStyleClass().add("lbFahrenheit");
 
         lbOutputResult = new Label("output");
+        lbOutputResult.getStyleClass().add("lbOutputResult");
 
-        lbCelsius = new Label("°C");
+        lbCelsius = new Label("°F");
         // lbCelsius.getStyleClass().add("lbCelsius");
         
         rbFtoC = new RadioButton();
@@ -60,21 +62,22 @@ public class BiTempConvert extends Application{
         lbTemperatureConvert.setMaxWidth(Double.MAX_VALUE);
         lbTemperatureConvert.setAlignment(Pos.CENTER);
 
-        gridPane.add(tfResult, 0, 1, 1, 1);
+        gridPane.add(tfResult, 0, 1, 2, 1);
         // tfResult.setMaxWidth(Double.MAX_VALUE);
-        tfResult.setMaxWidth(100);
+        tfResult.setMaxWidth(160);
 
         gridPane.add(lbFahrenheit, 1, 1, 1, 1);   
         lbFahrenheit.setMaxWidth(Double.MAX_VALUE);
-        lbFahrenheit.setAlignment(Pos.CENTER);
+        lbFahrenheit.setAlignment(Pos.CENTER_RIGHT);
 
-        gridPane.add(lbOutputResult, 0, 2, 1, 1);
-        lbOutputResult.setMaxWidth(Double.MAX_VALUE);
+        gridPane.add(lbOutputResult, 0, 2, 2, 1);
+        // lbOutputResult.setMaxWidth(Double.MAX_VALUE);
+        lbOutputResult.setMaxWidth(160);
         lbOutputResult.setAlignment(Pos.CENTER_LEFT);
 
         gridPane.add(lbCelsius, 1, 2, 1, 1);
         lbCelsius.setMaxWidth(Double.MAX_VALUE);
-        lbCelsius.setAlignment(Pos.CENTER);
+        lbCelsius.setAlignment(Pos.CENTER_RIGHT);
 
         gridPane.add(rbFtoC, 0, 3, 1, 1);
         gridPane.add(rbCtoF, 1, 3, 1, 1);
@@ -92,6 +95,7 @@ public class BiTempConvert extends Application{
 
         Scene scene = new Scene(gridPane, 600, 400);
         scene.getStylesheets().add("/css/style.css");
+        stage.getIcons().add(new Image("./media/teplotaIkona.png"));
         stage.setTitle("Temperature Converter");
         stage.setScene(scene);
         stage.setResizable(false);
@@ -103,7 +107,6 @@ public class BiTempConvert extends Application{
         public void handle(Event event){
             DecimalFormat dcmf = new DecimalFormat();
             dcmf.setMaximumFractionDigits(2);
-
 
             try{
                 float degree = Float.parseFloat(tfResult.getText());
@@ -123,6 +126,7 @@ public class BiTempConvert extends Application{
                 DialogPane dialogPane = alert.getDialogPane();
                 // dialogPane.getStylesheets().add("css/style.css");
                 // dialogPane.getStyleClass().add("warning");
+                stage.getIcons().add(new Image("./media/warningIkona.png"));
                 alert.setHeaderText("Zadajte číslo!");
                 //javac -encoding utf8 ....java
                 alert.setTitle("Chyba");

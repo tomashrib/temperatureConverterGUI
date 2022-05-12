@@ -31,3 +31,17 @@
     -fx-background-color: rgba(0, 136, 255, 1);
     /* -fx-background-radius: 0 20 0 20; */
 }
+
+.lbOutputResult{
+    -fx-background-color: rgb(255,255,255);
+    -fx-text-aligment: center;
+    -fx-padding: 5px;
+    /* -fx-border: 2px solid rgba(0,136,255,1); */
+
+    -fx-border-color:rgb(45,45,45) ;
+    /* -fx-border-color:rgb(12, 166, 255) ; */
+    -fx-border-width: 2; 
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    /* -fx-border-style: segments(10, 15, 15, 15)  line-cap round ; */
+}
